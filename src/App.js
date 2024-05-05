@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { getCodes } from "iso-3166-1-alpha-2";
+import "./App.css";
 
 function App() {
+  function randomCountry() {
+    let codes = getCodes();
+    return codes[randomFromInterval(0, codes.length)].toLowerCase();
+  }
+
+  function randomFromInterval(min, max) {
+    // min and max included
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <p>Hello world</p>
+      <img
+        src={require(`./shapes/${randomCountry()}/512.png`)}
+        alt="Mystery Country Shape"
+      />
     </div>
   );
 }
