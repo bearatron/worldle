@@ -12,7 +12,6 @@ function GameLogic() {
   const [countryList, setCountryList] = useState([]); // array of country objects parsed from csv
   const [countryToGuess, setCountryToGuess] = useState({}); // country object parsed from csv
   const [guessObjs, setGuessObjs] = useState([]); // array of country objects parsed from csv
-  const maxGuesses = 6;
   const mercatorMapWidth = 2058;
   const mercatorMapHeight = 2058;
 
@@ -299,13 +298,9 @@ function GameLogic() {
     <div className="game-logic">
       {console.log("country to guess:")} {console.log(countryToGuess)}
       <CountryShape countryCode={countryToGuess.country} />
-      <GuessList maxGuesses={maxGuesses} guessList={countriesGuessed} />
-      {countriesGuessed.length < maxGuesses ? (
-        <GuessInput addGuess={addGuess} countryList={countryList} />
-      ) : (
-        <></>
-      )}
-      {/* <div className="map-bounding-box">
+      <GuessList guessList={countriesGuessed} />
+      <GuessInput addGuess={addGuess} countryList={countryList} />
+      <div className="map-bounding-box">
         <div className="country-labels">
           <ReactP5Wrapper sketch={sketch} />
         </div>
@@ -314,7 +309,7 @@ function GameLogic() {
           className="mercator-img"
           alt="world map mercator projection"
         ></img>
-      </div> */}
+      </div>
       {/* {console.log(countryList)} */}
     </div>
   );
