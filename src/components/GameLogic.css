@@ -1,0 +1,7 @@
+.game-logic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 500px;
+}/*# sourceMappingURL=GameLogic.css.map */

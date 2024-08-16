@@ -1,0 +1,28 @@
+.guess-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 10px;
+  width: 100%;
+}
+.guess-form__text-input, .guess-form__submit-button {
+  font-size: medium;
+  border-radius: 3px;
+  transition-duration: 0.2s;
+}
+.guess-form__text-input:hover, .guess-form__submit-button:hover {
+  background-color: whitesmoke;
+}
+.guess-form__text-input:focus, .guess-form__submit-button:focus {
+  background-color: white;
+  outline: none;
+  box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.3);
+}
+.guess-form__text-input {
+  width: 100%;
+}
+
+.error-text {
+  color: rgb(255, 60, 60);
+}/*# sourceMappingURL=GuessInput.css.map */

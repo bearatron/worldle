@@ -1,0 +1,36 @@
+.guess-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 10px;
+  width: 100%;
+
+  &__text-input,
+  &__submit-button {
+    // background-color: white;
+    // padding: 8px 12px;
+    font-size: medium;
+    // border: 2px solid rgb(200, 200, 200);
+    border-radius: 3px;
+    transition-duration: 0.2s;
+
+    &:hover {
+      background-color: whitesmoke;
+    }
+
+    &:focus {
+      background-color: white;
+      outline: none;
+      box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  &__text-input {
+    width: 100%;
+  }
+}
+
+.error-text {
+  color: rgb(255, 60, 60);
+}

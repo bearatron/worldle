@@ -1,0 +1,10 @@
+.guess-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 100%;
+  margin: 20px;
+  padding: 0px;
+}/*# sourceMappingURL=GuessList.css.map */
