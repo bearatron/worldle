@@ -1,6 +1,6 @@
-// import { getCodes } from "iso-3166-1-alpha-2";
+import { useState } from "react";
 
-function CountryShape() {
+function CountryShape({ countryCode }) {
   // function randomCountry() {
   //   let codes = getCodes();
   //   return codes[randomFromInterval(0, codes.length)].toLowerCase();
@@ -16,13 +16,15 @@ function CountryShape() {
   //   console.log();
   // }
 
+  const [imagePath, setImagePath] = useState(`./shapes/${countryCode}/256.png`);
+
   return (
     <>
       {/* <img
         src={require(`shapes/${randomCountry()}/256.png`)}
         alt="Mystery Country Shape"
       /> */}
-      <img src={require(`shapes/ca/256.png`)} alt="Mystery Country Shape" />
+      <img src={imagePath} width="256px" alt="mystery country shape" />
     </>
   );
 }
