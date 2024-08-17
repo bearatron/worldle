@@ -1,20 +1,39 @@
 import CountryShape from "components/CountryShape";
 import GuessList from "components/GuessList";
 import GuessInput from "components/GuessInput";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { usePapaParse } from "react-papaparse";
 import LatLon from "geodesy/latlon-spherical.js";
 import { ReactP5Wrapper } from "@p5-wrapper/react";
 import "./GameLogic.css";
+import NextGameButton from "./NextGameButton";
 
 function GameLogic() {
   const [countriesGuessed, setCountriesGuessed] = useState([]); // array of GuessItem components
   const [countryList, setCountryList] = useState([]); // array of country objects parsed from csv
   const [countryToGuess, setCountryToGuess] = useState({}); // country object parsed from csv
   const [guessObjs, setGuessObjs] = useState([]); // array of country objects parsed from csv
+  const [gameFinished, setGameFinished] = useState(false);
   const maxGuesses = 6;
   const mercatorMapWidth = 2058;
   const mercatorMapHeight = 2058;
+
+  useEffect(() => {
+    function isGameFinished() {
+      if (
+        countriesGuessed.length > 0 &&
+        countriesGuessed[countriesGuessed.length - 1].percentage === "100%"
+      ) {
+        setGameFinished(true);
+      } else if (countriesGuessed.length === maxGuesses) {
+        setGameFinished(true);
+      } else {
+        setGameFinished(false);
+      }
+    }
+
+    isGameFinished();
+  }, [countriesGuessed]);
 
   function addGuess(countryName) {
     let guessObj = {};
@@ -169,9 +188,10 @@ function GameLogic() {
   }
 
   function resetGame() {
+    setGameFinished(false);
     setCountriesGuessed([]);
     setCountryToGuess(
-      countryList[Math.floor(Math.random() * countryList.length)].country
+      countryList[Math.floor(Math.random() * countryList.length)]
     );
   }
 
@@ -195,14 +215,14 @@ function GameLogic() {
         filteredCoords[Math.floor(Math.random() * filteredCoords.length)];
 
       setCountryList(filteredCoords);
-      // setCountryToGuess(randomCountryObj);
+      setCountryToGuess(randomCountryObj);
 
-      setCountryToGuess({
-        country: "WF",
-        latitude: -13.768752,
-        longitude: -177.156097,
-        name: "Wallis and Futuna",
-      });
+      // setCountryToGuess({
+      //   country: "WF",
+      //   latitude: -13.768752,
+      //   longitude: -177.156097,
+      //   name: "Wallis and Futuna",
+      // });
     }
 
     function formatCountryList(list) {
@@ -300,10 +320,10 @@ function GameLogic() {
       {console.log("country to guess:")} {console.log(countryToGuess)}
       <CountryShape countryCode={countryToGuess.country} />
       <GuessList maxGuesses={maxGuesses} guessList={countriesGuessed} />
-      {countriesGuessed.length < maxGuesses ? (
-        <GuessInput addGuess={addGuess} countryList={countryList} />
+      {gameFinished ? (
+        <NextGameButton resetGame={resetGame} />
       ) : (
-        <></>
+        <GuessInput addGuess={addGuess} countryList={countryList} />
       )}
       {/* <div className="map-bounding-box">
       <GuessInput addGuess={addGuess} countryList={countryList} />
