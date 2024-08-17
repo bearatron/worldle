@@ -16,7 +16,7 @@ function CountryShape({ countryCode }) {
   //   console.log();
   // }
 
-  const [imagePath, setImagePath] = useState(`./shapes/${countryCode}/256.png`);
+  const imagePath = `./shapes/${countryCode}/256.png`;
 
   return (
     <>
