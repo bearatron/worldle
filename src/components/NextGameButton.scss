@@ -1,0 +1,17 @@
+.next-game-button {
+  width: 100%;
+  color: white;
+  background-color: rgb(35, 135, 249);
+  font-weight: bold;
+  height: 2rem;
+  // border: 1px solid rgb(200, 200, 200);
+  border: none;
+  border-radius: 3px;
+  font-size: medium;
+  text-align: center;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgb(75, 154, 255);
+  }
+}
