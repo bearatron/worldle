@@ -5,8 +5,10 @@ import { useEffect, useMemo, useState } from "react";
 import { usePapaParse } from "react-papaparse";
 import LatLon from "geodesy/latlon-spherical.js";
 import { ReactP5Wrapper } from "@p5-wrapper/react";
+import { motion } from "framer-motion";
 import "./GameLogic.css";
 import NextGameButton from "./NextGameButton";
+import Dialog from "./Dialog";
 
 function GameLogic() {
   const [countriesGuessed, setCountriesGuessed] = useState([]); // array of GuessItem components
@@ -14,6 +16,7 @@ function GameLogic() {
   const [countryToGuess, setCountryToGuess] = useState({}); // country object parsed from csv
   const [guessObjs, setGuessObjs] = useState([]); // array of country objects parsed from csv
   const [gameFinished, setGameFinished] = useState(false);
+  const [dialogText, setDialogText] = useState("");
   const maxGuesses = 6;
   const mercatorMapWidth = 2058;
   const mercatorMapHeight = 2058;
@@ -25,8 +28,10 @@ function GameLogic() {
         countriesGuessed[countriesGuessed.length - 1].percentage === "100%"
       ) {
         setGameFinished(true);
+        setDialogText("Good job");
       } else if (countriesGuessed.length === maxGuesses) {
         setGameFinished(true);
+        setDialogText(countryToGuess.name);
       } else {
         setGameFinished(false);
       }
@@ -193,6 +198,7 @@ function GameLogic() {
     setCountryToGuess(
       countryList[Math.floor(Math.random() * countryList.length)]
     );
+    setDialogText("");
   }
 
   const { readString } = usePapaParse();
@@ -317,6 +323,7 @@ function GameLogic() {
 
   return (
     <div className="game-logic">
+      <Dialog text={dialogText} />
       {console.log("country to guess:")} {console.log(countryToGuess)}
       <CountryShape countryCode={countryToGuess.country} />
       <GuessList maxGuesses={maxGuesses} guessList={countriesGuessed} />
