@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 function CountryShape({ countryCode }) {
   // function randomCountry() {
   //   let codes = getCodes();
@@ -16,7 +14,7 @@ function CountryShape({ countryCode }) {
   //   console.log();
   // }
 
-  const imagePath = `./shapes/${countryCode}/256.png`;
+  const imagePath = `./shapes/${countryCode.toLowerCase()}/256.png`;
 
   return (
     <>
