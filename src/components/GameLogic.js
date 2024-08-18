@@ -5,7 +5,6 @@ import { useEffect, useMemo, useState } from "react";
 import { usePapaParse } from "react-papaparse";
 import LatLon from "geodesy/latlon-spherical.js";
 import { ReactP5Wrapper } from "@p5-wrapper/react";
-import { motion } from "framer-motion";
 import "./GameLogic.css";
 import NextGameButton from "./NextGameButton";
 import Dialog from "./Dialog";
@@ -56,9 +55,9 @@ function GameLogic() {
 
     setGuessObjs([...guessObjs, guessObj]);
 
-    console.log(guessObj);
-    console.log(countryToGuess);
-    console.log("logging distance");
+    // console.log(guessObj);
+    // console.log(countryToGuess);
+    // console.log("logging distance");
 
     const guess = new LatLon(guessObj.latitude, guessObj.longitude);
     const answer = new LatLon(
@@ -83,9 +82,9 @@ function GameLogic() {
       percentage = Math.round(unroundedPercentage);
     }
 
-    console.log(
-      ((halfEarthCircumference - distance) / halfEarthCircumference) * 100
-    );
+    // console.log(
+    //   ((halfEarthCircumference - distance) / halfEarthCircumference) * 100
+    // );
 
     const bearing = trueBearing(
       toCoords(guessObj.latitude, guessObj.longitude),
@@ -222,13 +221,6 @@ function GameLogic() {
 
       setCountryList(filteredCoords);
       setCountryToGuess(randomCountryObj);
-
-      // setCountryToGuess({
-      //   country: "WF",
-      //   latitude: -13.768752,
-      //   longitude: -177.156097,
-      //   name: "Wallis and Futuna",
-      // });
     }
 
     function formatCountryList(list) {
@@ -324,7 +316,6 @@ function GameLogic() {
   return (
     <div className="game-logic">
       <Dialog text={dialogText} />
-      {console.log("country to guess:")} {console.log(countryToGuess)}
       <CountryShape countryCode={countryToGuess.country} />
       <GuessList maxGuesses={maxGuesses} guessList={countriesGuessed} />
       {gameFinished ? (

@@ -7,7 +7,6 @@ function GuessInput({ addGuess, countryList }) {
   const [errorMsg, setErrorMsg] = useState("");
 
   function generateOptions() {
-    console.log("test");
     const options = [];
 
     for (let i = 0; i < countryList.length; i++) {
@@ -18,9 +17,9 @@ function GuessInput({ addGuess, countryList }) {
   }
 
   function handleSubmit(newVal) {
-    console.log(newVal);
+    // console.log(newVal);
     // e.preventDefault();
-    console.log(`submitted guess: ${newVal.label}`);
+    // console.log(`submitted guess: ${newVal.label}`);
     try {
       addGuess(newVal.label);
       // setGuess("");
