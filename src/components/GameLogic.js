@@ -37,7 +37,7 @@ function GameLogic() {
     }
 
     isGameFinished();
-  }, [countriesGuessed]);
+  }, [countriesGuessed, countryToGuess.name]);
 
   function addGuess(countryName) {
     let guessObj = {};
