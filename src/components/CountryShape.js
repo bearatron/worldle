@@ -1,5 +1,5 @@
 function CountryShape({ countryCode }) {
-  const imagePath = `./shapes/${countryCode.toLowerCase()}/256.png`;
+  const imagePath = `./shapes/${countryCode.toLowerCase()}/vector.svg`;
 
   return (
     <>
